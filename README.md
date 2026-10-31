@@ -1,25 +1,60 @@
-# 🎈 Blank app template
 
-A simple Streamlit app template for you to modify!
+import streamlit as st
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://blank-app-template.streamlit.app/)
+# ऐप की सेटिंग
+st.set_page_config(
+    page_title="My First App",
+    page_icon="🔵",
+    layout="centered"
+)
 
-### How to run it on your own machine
+# सुंदर डिजाइन
+st.markdown("""
+<style>
+.stApp {
+    background-color: #F0F7FF;
+}
+.main-title {
+    text-align: center;
+    color: #1E3A8A;
+    font-size: 38px;
+    font-weight: bold;
+}
+.sub-title {
+    text-align: center;
+    color: #3B82F6;
+    font-size: 20px;
+}
+</style>
+""", unsafe_allow_html=True)
 
-Prerequisite: install `uv` if you don't already have it.
+# मुख्य हेडिंग
+st.markdown(
+    '<h1 class="main-title">🔵 Hello, Welcome!</h1>',
+    unsafe_allow_html=True
+)
 
-```
-$ curl -LsSf https://astral.sh/uv/install.sh | sh
-```
+st.markdown(
+    '<h3 class="sub-title">आपका अपना पहला AI App</h3>',
+    unsafe_allow_html=True
+)
 
-1. Sync the dependencies
+st.write("---")
 
-   ```
-   $ uv sync
-   ```
+# नाम इनपुट
+user_name = st.text_input(
+    "अपना नाम यहाँ लिखें:",
+    placeholder="अपना नाम लिखें..."
+)
 
-2. Run the app
+# Submit बटन
+if st.button("✨ Submit करें", use_container_width=True):
+    if user_name.strip():
+        st.success(f"🎉 Hello {user_name}! आपका ऐप शानदार दिख रहा है।")
+        st.balloons()
+    else:
+        st.warning("कृपया पहले अपना नाम लिखें!")
 
-   ```
-   $ uv run streamlit run streamlit_app.py
-   ```
+st.write("---")
+st.caption("Made with ❤️ using Streamlit")
+
